@@ -1,0 +1,42 @@
+.meu-botao {
+  background-color: #ff0000; /* Verde personalizado */
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  width: 100%;
+  transition: 0.2s ease-in-out;
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: 10px;
+}
+
+.meu-botao:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.minha-logo {
+    width: 100px;
+    height: auto;
+    position: relative;
+    right: 100px;
+}
+
+.input-group1 {
+  display: flex;
+  align-items:  center;
+  margin-bottom: -10px;
+  margin-top: 30px;
+}
+
+.input-group2 {
+  display: flex;
+  align-items:  center;
+  margin-bottom: -10px;
+  margin-top: 10px;
+}
+
+/* Estilos adicionais */
+.alert {
+  margin-top: 20px;
+}
