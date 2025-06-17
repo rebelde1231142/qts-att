@@ -15,13 +15,6 @@
   transform: scale(1.05);
 }
 
-.minha-logo {
-    width: 100px;
-    height: auto;
-    position: relative;
-    right: 100px;
-}
-
 .input-group1 {
   display: flex;
   align-items:  center;
