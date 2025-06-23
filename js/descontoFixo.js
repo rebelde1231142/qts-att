@@ -1,2 +1,7 @@
-// Função para calcular um desconto fixo de R$ 20
-export const descontoFixo = (valor) => valor - 20;
+import { DescontoStrategy } from './DescontoStrategy.js';
+
+export class DescontoFixo extends DescontoStrategy {
+  calcular(valor) {
+    return valor - 20;
+  }
+}

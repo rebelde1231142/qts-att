@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora de Desconto</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/index.css">
+  
+</head>
+<body class="bg-light d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+  <div class="card shadow-lg p-4" style="max-width: 400px; width: 100%;">
+    <h2 class="text-center mb-4">Calculadora de Desconto</h2>
+    <form id="formDesconto">
+      <div class="mb-3">
+        <label for="valor" class="form-label">Valor Original:</label>
+        <input type="number" id="valor" class="form-control form-control-lg" placeholder="Digite o valor aqui" min="0" step="0.01" required>
+      </div>
+      <div class="mb-3">
+        <label for="selectItem" class="form-label">Tipo de Desconto:</label>
+        <select id="selectItem" class="form-select form-select-lg" required>
+          <option value="">Selecione...</option>
+          <option value="percentual">Percentual (10%)</option>
+          <option value="fixo">Fixo (R$ 20)</option>
+          <option value="progressivo">Progressivo</option>
+          <option value="pablo">pablo</option>
+
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg meu-botao w-100">Calcular</button>
+    </form>
+    <div id="resultado" class="alert alert-info mt-4 text-center" role="alert" style="display:none;">
+      Resultado
+    </div>
+  </div>
+  <script type="module" src="../index.js"></script>
+  <script>
+    document.getElementById('formDesconto').onsubmit = function(e) {
+      e.preventDefault();
+      const valor = document.getElementById('valor').value;
+      const estrategia = document.getElementById('selectItem').value;
+      if (!valor || !estrategia) return;
+      window.location.href = `resultado.html?valor=${encodeURIComponent(valor)}&estrategia=${encodeURIComponent(estrategia)}`;
+    };
+  </script>
+</body>
+</html>

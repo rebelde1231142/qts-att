@@ -1,8 +1,12 @@
-// Função para calcular um desconto progressivo
-export const descontoProgressivo = (valor) => {
-  if (valor > 100) {
-    return valor - (valor * 0.15); // 15% de desconto para valores acima de R$ 100
-  } else {
-    return valor - (valor * 0.05); // 5% de desconto para valores abaixo de R$ 100
+import { DescontoStrategy } from './DescontoStrategy.js';
+
+export class DescontoProgressivo extends DescontoStrategy {
+  calcular(valor) {
+    const descontos = [
+      { limite: 100, percentual: 0.05 },
+      { limite: Infinity, percentual: 0.15 }
+    ];
+    const desconto = descontos.find(d => valor <= d.limite) || descontos[descontos.length - 1];
+    return valor - (valor * desconto.percentual);
   }
-};
+}
