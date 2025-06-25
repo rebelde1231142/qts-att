@@ -1,6 +1,8 @@
 import { DescontoStrategy } from './DescontoStrategy.js';
 
 export class DescontoProgressivo extends DescontoStrategy {
+  static nomeChave = 'progressivo';
+  static nomeExibicao = 'Progressivo';
   calcular(valor) {
     const descontos = [
       { limite: 100, percentual: 0.05 },
@@ -10,3 +12,5 @@ export class DescontoProgressivo extends DescontoStrategy {
     return valor - (valor * desconto.percentual);
   }
 }
+// Instancia para registro automático
+new DescontoProgressivo();

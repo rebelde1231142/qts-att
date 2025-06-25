@@ -23,11 +23,8 @@
     <a href="index.html" class="btn btn-secondary btn-lg w-100 mt-3">Calcular Novamente</a>
   </div>
   <script type="module">
-    import { DescontoPercentual } from '../js/descontoPercentual.js';
-    import { DescontoFixo } from '../js/descontoFixo.js';
-    import { DescontoProgressivo } from '../js/descontoProgressivo.js';
+    import { estrategiasDesconto } from '../js/estrategiasDesconto.js';
     import { calcularDesconto } from '../index.js';
-    import { pablo } from '../js/pablo.js';
 
     // Função para obter parâmetros da URL
     function getQueryParams() {
@@ -38,29 +35,15 @@
       };
     }
 
-    // Mapeamento das estratégias
-    const estrategias = {
-      percentual: new DescontoPercentual(),
-      fixo: new DescontoFixo(),
-      progressivo: new DescontoProgressivo()
-    };
-
     // Exibe os dados na tela
     const { valor, estrategia } = getQueryParams();
     document.getElementById('valorBase').value = valor?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) || '';
-    let nomeEstrat = '';
-    switch (estrategia) {
-      case 'percentual': nomeEstrat = 'Percentual (10%)'; break;
-      case 'fixo': nomeEstrat = 'Fixo (R$ 20)'; break;
-      case 'progressivo': nomeEstrat = 'Progressivo'; break;
-      case 'pablo': nomeEstrat = pablo(valor); break;
-      default: nomeEstrat = estrategia;
-    }
+    const nomeEstrat = estrategiasDesconto[estrategia]?.nome || 'Estratégia desconhecida';
     document.getElementById('estrategiaUsada').value = nomeEstrat;
 
     let resultado = '';
-    if (estrategias[estrategia] && !isNaN(valor)) {
-      resultado = calcularDesconto(valor, estrategias[estrategia]);
+    if (estrategiasDesconto[estrategia]?.instancia && !isNaN(valor)) {
+      resultado = calcularDesconto(valor, estrategia);
       document.getElementById('resultadoFinal').textContent = 'Valor final: ' + resultado.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     } else {
       document.getElementById('resultadoFinal').textContent = 'Dados inválidos.';

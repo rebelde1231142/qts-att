@@ -19,11 +19,6 @@
         <label for="selectItem" class="form-label">Tipo de Desconto:</label>
         <select id="selectItem" class="form-select form-select-lg" required>
           <option value="">Selecione...</option>
-          <option value="percentual">Percentual (10%)</option>
-          <option value="fixo">Fixo (R$ 20)</option>
-          <option value="progressivo">Progressivo</option>
-          <option value="pablo">pablo</option>
-
         </select>
       </div>
       <button type="submit" class="btn btn-primary btn-lg meu-botao w-100">Calcular</button>
@@ -32,8 +27,18 @@
       Resultado
     </div>
   </div>
-  <script type="module" src="../index.js"></script>
-  <script>
+  <script type="module">
+    import { estrategiasDesconto } from '../js/estrategiasDesconto.js';
+
+    // Gera dinamicamente as opções de desconto
+    const selectItem = document.getElementById('selectItem');
+    Object.keys(estrategiasDesconto).forEach(key => {
+      const option = document.createElement('option');
+      option.value = key;
+      option.textContent = estrategiasDesconto[key].nome;
+      selectItem.appendChild(option);
+    });
+
     document.getElementById('formDesconto').onsubmit = function(e) {
       e.preventDefault();
       const valor = document.getElementById('valor').value;
